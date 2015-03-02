@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2015 Damien Chazoule
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<resources>
+
+    <string name="about">À propos</string>
+	<string name="baseband">Radio</string>
+	<string name="developer">PadLock pour les appareils Android Nexus est développé à base de caféine en utilisant des logiciels open source.</string>
+	<string name="device">Appareil</string>
+    <string name="error">PAS D\'ACCÈS ROOT !</string>
+    <string name="free">Libre</string>
+    <string name="kernel">Noyau</string>
+    <string name="loading">En attente du Root...</string>
+    <string name="lock">Verouiller</string>
+    <string name="locked">Verouillé</string>
+    <string name="message">PadLock pour Android permet de déverouiller le BootLoader de votre appareil Android Nexus <b>sans</b> perdre vos données personnels. \n\nCette application nécessite que votre appareil soit <b>Rooter</b> ! \n\nEnjoy ;)</string>
+    <string name="reboot">Redémarrer le BootLoader ?</string>
+    <string name="state">État</string>
+    <string name="storage">Stockage</string>
+    <string name="title">Bonjour !</string>
+    <string name="unknown">Inconnu</string>
+    <string name="unlock">Déverouiller</string>
+    <string name="unlocked">Déverouillé</string>
+    <string name="yes">Oui</string>
+
+</resources>

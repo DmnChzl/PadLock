@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2015 Damien Chazoule
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<resources>
+
+    <string name="app_name" translatable="false">PadLock</string>
+    <string name="about">About</string>
+    <string name="action" translatable="false">Action</string>
+	<string name="android" translatable="false">Android</string>
+    <string name="application" translatable="false">Application</string>
+    <string name="baseband">Baseband</string>
+    <string name="bootloader" translatable="false">BootLoader</string>
+    <string name="build" translatable="false">Build</string>
+    <string name="copyright" translatable="false">Copyright &#169; 2015 Damien Chazoule</string>
+    <string name="designation" translatable="false">Designation</string>
+	<string name="developer">PadLock for Nexus Android devices is built with caffeine using open source software.</string>
+	<string name="device">Device</string>
+    <string name="error">NO ROOT ACCESS !</string>
+    <string name="free">Free</string>
+	<string name="info" translatable="false">Information</string>
+    <string name="kernel">Kernel</string>
+    <string name="loading">Waiting for Root…</string>
+    <string name="lock">Lock</string>
+    <string name="locked">Locked</string>
+    <string name="message">PadLock for Android allows you to unlock the Nexus BootLoader of your Android device without wipe your personal data. \n\nThis application requires that your device is <b>Rooted</b> ! \n\nEnjoy ;)</string>
+    <string name="okay" translatable="false">Ok</string>
+    <string name="ram" translatable="false">RAM</string>
+    <string name="reboot">Reboot BootLoader ?</string>
+    <string name="serial" translatable="false">Serial</string>
+    <string name="state">State</string>
+    <string name="storage">Storage</string>
+    <string name="title">Hello !</string>
+    <string name="unknown">Unknown</string>
+    <string name="unlock">Unlock</string>
+    <string name="unlocked">Unlocked</string>
+    <string name="url" translatable="false">https://github.com/MrDoomy/PadLock</string>
+    <string name="yes">Yes</string>
+
+</resources>

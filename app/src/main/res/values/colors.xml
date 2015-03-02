@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2015 Damien Chazoule
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<resources>
+
+	<color name="material">#303030</color> <!-- Material -->
+	<color name="red">#f44336</color> <!-- Red 500 -->
+	<color name="redDark">#d32f2f</color> <!-- Red 700 -->
+	<color name="pinkDark">#c2185b</color> <!-- Pink 700 -->
+	<color name="purpleDark">#7b1fa2</color> <!-- Purple 700 -->
+	<color name="indigoDark">#303f9f</color> <!-- Indigo 700 -->
+	<color name="blueDark">#1976d2</color> <!-- Blue 700 -->
+	<color name="cyanDark">#0097a7</color> <!-- Cyan 700 -->
+	<color name="tealDark">#00796b</color> <!-- Teal 700 -->
+	<color name="green">#4caf50</color> <!-- Green 500 -->
+	<color name="greenDark">#388e3c</color> <!-- Green 700 -->
+	<color name="lightGreenDark">#689f38</color> <!-- Light Green 700 -->
+	<color name="limeDark">#afb42b</color> <!-- Lime 700 -->
+	<color name="amberDark">#ffa000</color> <!-- Amber 700 -->
+    <color name="orange">#ff9800</color> <!-- Orange 500 -->
+	<color name="orangeDark">#f57c00</color> <!-- Orange 700 -->
+	<color name="orangeFull">#e65100</color> <!-- Orange 900 -->
+	<color name="deepOrangeDark">#e64a19</color> <!-- Deep Orange 700 -->
+	<color name="brownDark">#5d4037</color> <!-- Brown 700 -->
+	<color name="greyEmpty">#fafafa</color> <!-- Grey 50 -->
+    <color name="greyDark">#616161</color> <!-- Grey 700 -->
+    <color name="blueGreyDark">#455a64</color> <!-- Blue Grey 700 -->
+	
+</resources>
