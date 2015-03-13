@@ -30,7 +30,7 @@
     <string name="build" translatable="false">Build</string>
     <string name="copyright" translatable="false">Copyright &#169; 2015 Damien Chazoule</string>
     <string name="designation" translatable="false">Designation</string>
-	<string name="developer">PadLock for Nexus Android devices is built with caffeine using open source software.</string>
+	<string name="developer">PadLock for Android devices is built with caffeine using open source software.</string>
 	<string name="device">Device</string>
     <string name="error">NO ROOT ACCESS !</string>
     <string name="free">Free</string>
@@ -41,7 +41,7 @@
     <string name="loading">Waiting for Root&#8230;</string>
     <string name="lock">Lock</string>
     <string name="locked">Locked</string>
-    <string name="message">PadLock for Android allows you to unlock the Nexus BootLoader of your Android device without wipe your personal data. \n\nThis application requires that your device is <b>Rooted</b> ! \n\nEnjoy ;)</string>
+    <string name="message">PadLock for Android allows you to unlock the BootLoader of your Android device without wipe your personal data. \n\nThis application has an advanced reboot menu and possibility to enable wireless ADB. \n\nThis application requires that your device is <b>Rooted</b> ! \n\nEnjoy ;)</string>
     <string name="notification">Wireless debugging enabled</string>
     <string name="okay" translatable="false">OK</string>
     <string name="port">Log on port 5555</string>
