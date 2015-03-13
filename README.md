@@ -6,10 +6,13 @@ This includes features like :
 - Unlock the BootLoader
 - Access to information
 - Reboot on BootLoader
+- Reboot menu advanced
+- ADB wireless
 
 #Permission
 
 - android.permission.ACCESS_SUPERUSER
+- android.permission.ACCESS_WIFI_STATE
 
 #Dependencies
 
@@ -20,11 +23,11 @@ This includes features like :
 - com.getbase:floatingactionbutton:1.6.0
 - com.nispok:snackbar:2.7.5
 
-#Google Play
+#QR Code
 
 <a href="https://play.google.com/store/apps/details?id=com.doomy.padlock">
-  <img alt="Android app on Google Play"
-       src="https://developer.android.com/images/brand/en_app_rgb_wo_60.png" />
+  <img alt="QR Code"
+       src="https://raw.githubusercontent.com/MrDoomy/PadLock/master/dev/images/qrcode.png" />
 </a>
 
 #Screenshots
