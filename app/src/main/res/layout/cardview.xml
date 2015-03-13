@@ -61,7 +61,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_height="1px"
                 android:background="@color/greyDark" />
 
@@ -70,14 +70,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:textSize="14sp"
                 android:maxLines="20"
-                android:textColor="@color/greyDark" />
+                android:textColor="@color/greyDark"
+				android:ellipsize="end"
+				android:singleLine="true" />
 
         </LinearLayout>
 

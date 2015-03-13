@@ -29,17 +29,11 @@ import android.widget.TextView;
 public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHolder> {
 
 	// Declaring your view and variables
-    private ArrayList<String> mTitleSet;
-	private ArrayList<Integer> mColorSet;
-	private ArrayList<String> mInfoSet;
-	private ArrayList<Integer> mLogoSet;
+    private ArrayList<Card> mCardSet;
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CardViewAdapter(ArrayList<String> myTitleSet, ArrayList<Integer> myColorSet, ArrayList<String> myInfoSet, ArrayList<Integer> myLogoSet) {
-        this.mTitleSet = myTitleSet;
-        this.mColorSet = myColorSet;
-		this.mInfoSet = myInfoSet;
-        this.mLogoSet = myLogoSet;
+    public CardViewAdapter(ArrayList<Card> myCardSet) {
+        this.mCardSet = myCardSet;
     }
 
     // Create new views (invoked by the layout manager)
@@ -60,16 +54,17 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
 
         // - Get element from your dataset at this position
         // - Replace the contents of the view with that element
-        viewHolder.setTitle.setText(mTitleSet.get(position).toString());
-        viewHolder.setTitle.setTextColor(viewHolder.setTitle.getContext().getResources().getColor(mColorSet.get(position)));
-		viewHolder.setInfo.setText(mInfoSet.get(position).toString());
-        viewHolder.setLogo.setImageResource(mLogoSet.get(position));
+        viewHolder.setTitle.setText(mCardSet.get(position).getTitle());
+        viewHolder.setTitle.setTextColor(viewHolder.setTitle.getContext().getResources().getColor(mCardSet.get(position).getFirstColor()));
+        viewHolder.setInfo.setText(mCardSet.get(position).getInfo());
+        viewHolder.setLogo.setImageResource(mCardSet.get(position).getLogo());
+        viewHolder.setLogo.setColorFilter(viewHolder.setTitle.getContext().getResources().getColor(mCardSet.get(position).getSecondColor()));
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mTitleSet.size();
+        return mCardSet.size();
     }
 
     // Inner class to hold a reference to each item of RecyclerView

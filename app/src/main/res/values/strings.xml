@@ -22,6 +22,7 @@
     <string name="app_name" translatable="false">PadLock</string>
     <string name="about">About</string>
     <string name="action" translatable="false">Action</string>
+    <string name="adb">ADB Wireless</string>
 	<string name="android" translatable="false">Android</string>
     <string name="application" translatable="false">Application</string>
     <string name="baseband">Baseband</string>
@@ -34,14 +35,21 @@
     <string name="error">NO ROOT ACCESS !</string>
     <string name="free">Free</string>
 	<string name="info" translatable="false">Information</string>
+    <string name="ip_adress">IP Address</string>
+    <string name="ip_error">Please connect to a Wi-Fi network</string>
     <string name="kernel">Kernel</string>
-    <string name="loading">Waiting for Root…</string>
+    <string name="loading">Waiting for Root&#8230;</string>
     <string name="lock">Lock</string>
     <string name="locked">Locked</string>
     <string name="message">PadLock for Android allows you to unlock the Nexus BootLoader of your Android device without wipe your personal data. \n\nThis application requires that your device is <b>Rooted</b> ! \n\nEnjoy ;)</string>
-    <string name="okay" translatable="false">Ok</string>
+    <string name="notification">Wireless debugging enabled</string>
+    <string name="okay" translatable="false">OK</string>
+    <string name="port">Log on port 5555</string>
     <string name="ram" translatable="false">RAM</string>
     <string name="reboot">Reboot BootLoader ?</string>
+	<string name="reboot_bootloader">Reboot BootLoader</string>
+	<string name="reboot_recovery">Reboot Recovery</string>
+	<string name="reboot_system">Reboot System</string>
     <string name="serial" translatable="false">Serial</string>
     <string name="state">State</string>
     <string name="storage">Storage</string>
@@ -49,6 +57,7 @@
     <string name="unknown">Unknown</string>
     <string name="unlock">Unlock</string>
     <string name="unlocked">Unlocked</string>
+	<string name="unsupported">Unsupported device</string>
     <string name="url" translatable="false">https://github.com/MrDoomy/PadLock</string>
     <string name="yes">Yes</string>
 

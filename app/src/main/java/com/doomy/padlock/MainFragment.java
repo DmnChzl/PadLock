@@ -48,12 +48,17 @@ public class MainFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-	private ArrayList<String> mTitleSet;
-	private ArrayList<Integer> mColorSet;
-	private ArrayList<String> mInfoSet;
-	private ArrayList<Integer> mLogoSet;
+	private ArrayList<Card> mCardSet;
+	private FloatingActionsMenu mMultipleActions;
+	private FloatingActionButton mActionLock;
+	private FloatingActionButton mActionUnlock;
+	private FloatingActionButton mActionBootLoader;
+	private FloatingActionButton mActionRecovery;
+	private FloatingActionButton mActionSystem;
 	private BootLoader mBootLoader = null;
-    private String mCommand = "reboot bootloader";
+    private String mRebootBootLoader = "reboot bootloader";
+	private String mRebootRecovery = "reboot recovery";
+	private String mRebootSystem = "reboot";
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate
@@ -76,12 +81,9 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.fragment_main,container,false);
 
-		final FloatingActionsMenu mMultipleActions = (FloatingActionsMenu) mView.findViewById(R.id.multipleActions);
-        mMultipleActions.setAlpha(0);
+		mMultipleActions = (FloatingActionsMenu) mView.findViewById(R.id.multipleActions);
 		
-        final FloatingActionButton mActionLock = (FloatingActionButton) mView.findViewById(R.id.actionLock);
-		mActionLock.setSize(FloatingActionButton.SIZE_MINI);
-        mActionLock.setIcon(R.drawable.img_lock);
+        mActionLock = (FloatingActionButton) mView.findViewById(R.id.actionLock);
         mActionLock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,9 +94,7 @@ public class MainFragment extends Fragment {
             }
         });
 
-        final FloatingActionButton mActionUnlock = (FloatingActionButton) mView.findViewById(R.id.actionUnlock);
-		mActionUnlock.setSize(FloatingActionButton.SIZE_MINI);
-        mActionUnlock.setIcon(R.drawable.img_unlock);
+        mActionUnlock = (FloatingActionButton) mView.findViewById(R.id.actionUnlock);
         mActionUnlock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +104,30 @@ public class MainFragment extends Fragment {
                 snackBar(mColor);
             }
         });
+
+		mActionBootLoader = (FloatingActionButton) mView.findViewById(R.id.actionBootLoader);
+		mActionBootLoader.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				superUserReboot(mRebootBootLoader);
+			}
+		});
+
+		mActionRecovery = (FloatingActionButton) mView.findViewById(R.id.actionRecovery);
+		mActionRecovery.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				superUserReboot(mRebootRecovery);
+			}
+		});
+
+		mActionSystem = (FloatingActionButton) mView.findViewById(R.id.actionSystem);
+		mActionSystem.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				superUserReboot(mRebootSystem);
+			}
+		});
 
         mRecyclerView = (RecyclerView) mView.findViewById(R.id.recyclerView);
 
@@ -122,65 +146,66 @@ public class MainFragment extends Fragment {
 	
 	public void prepareLockSet() {
 		
-		mTitleSet = new ArrayList<>();
-		mColorSet = new ArrayList<>();
-		mInfoSet = new ArrayList<>();
-		mLogoSet = new ArrayList<>();
-		
-		mTitleSet.add(getString(R.string.state));
-		mColorSet.add(R.color.redDark);
-		mInfoSet.add(getString(R.string.locked));
-		mLogoSet.add(R.drawable.ic_lock);
+		mCardSet = new ArrayList<>();
 
-        mAdapter = new CardViewAdapter(mTitleSet, mColorSet, mInfoSet, mLogoSet);
+        Card myCardSet = new Card(getString(R.string.state), R.color.redDark, R.color.red,
+                getString(R.string.locked), R.drawable.ic_lock);
+
+        mCardSet.add(myCardSet);
+
+        mAdapter = new CardViewAdapter(mCardSet);
         mRecyclerView.setAdapter(mAdapter);
 	}
 	
 	public void prepareUnlockSet() {
 
-        mTitleSet = new ArrayList<>();
-        mColorSet = new ArrayList<>();
-        mInfoSet = new ArrayList<>();
-        mLogoSet = new ArrayList<>();
-		
-		mTitleSet.add(getString(R.string.state));
-		mColorSet.add(R.color.greenDark);
-		mInfoSet.add(getString(R.string.unlocked));
-		mLogoSet.add(R.drawable.ic_unlock);
+        mCardSet = new ArrayList<>();
 
-        mAdapter = new CardViewAdapter(mTitleSet, mColorSet, mInfoSet, mLogoSet);
+        Card myCardSet = new Card(getString(R.string.state), R.color.greenDark, R.color.green,
+                getString(R.string.unlocked), R.drawable.ic_unlock);
+
+        mCardSet.add(myCardSet);
+
+        mAdapter = new CardViewAdapter(mCardSet);
         mRecyclerView.setAdapter(mAdapter);
 	}
 	
 	public void prepareDefaultSet() {
 
-        mTitleSet = new ArrayList<>();
-        mColorSet = new ArrayList<>();
-        mInfoSet = new ArrayList<>();
-        mLogoSet = new ArrayList<>();
-		
-		mTitleSet.add(getString(R.string.state));
-		mColorSet.add(R.color.orangeDark);
-		mInfoSet.add(getString(R.string.loading));
-		mLogoSet.add(R.drawable.ic_default);
+        mCardSet = new ArrayList<>();
 
-        mAdapter = new CardViewAdapter(mTitleSet, mColorSet, mInfoSet, mLogoSet);
+        Card myCardSet = new Card(getString(R.string.state), R.color.orangeDark, R.color.orange,
+                getString(R.string.loading), R.drawable.ic_default);
+
+        mCardSet.add(myCardSet);
+
+        mAdapter = new CardViewAdapter(mCardSet);
+        mRecyclerView.setAdapter(mAdapter);
+	}
+
+	public void prepareUnsupportedSet() {
+
+        mCardSet = new ArrayList<>();
+
+        Card myCardSet = new Card(getString(R.string.state), R.color.deepOrangeDark, R.color.deepOrange,
+                getString(R.string.unsupported), R.drawable.ic_warning);
+
+        mCardSet.add(myCardSet);
+
+        mAdapter = new CardViewAdapter(mCardSet);
         mRecyclerView.setAdapter(mAdapter);
 	}
 	
 	public void prepareErrorSet() {
 
-        mTitleSet = new ArrayList<>();
-        mColorSet = new ArrayList<>();
-        mInfoSet = new ArrayList<>();
-        mLogoSet = new ArrayList<>();
-		
-		mTitleSet.add(getString(R.string.state));
-		mColorSet.add(R.color.deepOrangeDark);
-		mInfoSet.add(getString(R.string.error));
-		mLogoSet.add(R.drawable.ic_warning);
+        mCardSet = new ArrayList<>();
 
-        mAdapter = new CardViewAdapter(mTitleSet, mColorSet, mInfoSet, mLogoSet);
+        Card myCardSet = new Card(getString(R.string.state), R.color.deepOrangeDark, R.color.deepOrange,
+                getString(R.string.error), R.drawable.ic_warning);
+
+        mCardSet.add(myCardSet);
+
+        mAdapter = new CardViewAdapter(mCardSet);
         mRecyclerView.setAdapter(mAdapter);
 	}
 
@@ -257,13 +282,12 @@ public class MainFragment extends Fragment {
         protected void onPostExecute(Integer resultObj) {
             int mResult = resultObj.intValue();
 
-            FloatingActionsMenu mMultipleActions = (FloatingActionsMenu) getView().findViewById(R.id.multipleActions);
-            FloatingActionButton mActionLock = (FloatingActionButton) getView().findViewById(R.id.actionLock);
-            FloatingActionButton mActionUnlock = (FloatingActionButton) getView().findViewById(R.id.actionUnlock);
+            mMultipleActions = (FloatingActionsMenu) getView().findViewById(R.id.multipleActions);
+            mActionLock = (FloatingActionButton) getView().findViewById(R.id.actionLock);
+            mActionUnlock = (FloatingActionButton) getView().findViewById(R.id.actionUnlock);
 
             if (mResult == BootLoader.BL_UNLOCKED) {
                 prepareUnlockSet();
-                mMultipleActions.setAlpha(1);
                 mActionLock.setVisibility(View.VISIBLE);
                 mActionUnlock.setVisibility(View.GONE);
             } else if (mResult == BootLoader.BL_LOCKED) {
@@ -272,17 +296,18 @@ public class MainFragment extends Fragment {
                 mActionLock.setVisibility(View.GONE);
                 mActionUnlock.setVisibility(View.VISIBLE);
             } else if (mResult == BootLoader.BL_UNSUPPORTED_DEVICE) {
-                prepareErrorSet();
-                mMultipleActions.setAlpha(0);
+                prepareUnsupportedSet();
+				mActionLock.setVisibility(View.GONE);
+				mActionUnlock.setVisibility(View.GONE);
             } else {
                 prepareErrorSet();
-                mMultipleActions.setAlpha(0);
+				mMultipleActions.setVisibility(View.GONE);
             }
         }
     }
 
     public void snackBar(int mColor) {
-        final FloatingActionsMenu mMultipleActions = (FloatingActionsMenu) getView().findViewById(R.id.multipleActions);
+        mMultipleActions = (FloatingActionsMenu) getView().findViewById(R.id.multipleActions);
         SnackbarManager.show(
                 Snackbar.with(getActivity())
                         .text(getString(R.string.reboot))
@@ -327,12 +352,12 @@ public class MainFragment extends Fragment {
                         .actionListener(new ActionClickListener() {
                             @Override
                             public void onActionClicked(Snackbar snackbar) {
-                                superUserRebootBootloader(mCommand);
+                                superUserReboot(mRebootBootLoader);
                             }
                         }).duration(Snackbar.SnackbarDuration.LENGTH_LONG));
     }
 
-    public void superUserRebootBootloader(String mCommand) {
+    public void superUserReboot(String mCommand) {
         Runtime mRuntime = Runtime.getRuntime();
         Process mProcess = null;
         OutputStreamWriter mWrite = null;

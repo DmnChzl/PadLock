@@ -18,21 +18,33 @@
 package com.doomy.padlock;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.format.Formatter;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -43,11 +55,15 @@ public class MainActivity extends ActionBarActivity {
     private SlidingTabLayout mSlidingTabLayout;
 	private int NumbOftabs = 2;
     private boolean mValue;
+    private static Boolean mPrefADB;
+    private static SharedPreferences mPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         // Open "Hello" dialog at the first launch
         openFirstDialog();
@@ -84,11 +100,81 @@ public class MainActivity extends ActionBarActivity {
         mSlidingTabLayout.setViewPager(mViewPager);
     }
 
+    private void showNotification() {
+        invalidateOptionsMenu();
+
+        String mPort = "5555";
+
+        androidDebugBridge(mPort);
+
+        Intent mIntent = new Intent(this, MainActivity.class);
+        PendingIntent mPendingIntent = PendingIntent.getActivity(this, 0, mIntent, 0);
+
+        Notification mNotification = new Notification.Builder(this)
+                .setContentTitle(getString(R.string.notification))
+                .setContentText(getString(R.string.port))
+                .setSmallIcon(R.drawable.img_adb)
+                .setContentIntent(mPendingIntent)
+                .setAutoCancel(false)
+                .setOngoing(true)
+                .setPriority(Notification.PRIORITY_HIGH)
+                .build();
+
+        NotificationManager mNotificationManager = (NotificationManager)
+                getSystemService(NOTIFICATION_SERVICE);
+
+        mNotificationManager.notify(0, mNotification);
+    }
+
+    private void killNotification() {
+        invalidateOptionsMenu();
+
+        String mPort = "-1";
+
+        androidDebugBridge(mPort);
+
+        NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.cancel(0);
+    }
+
+    public void androidDebugBridge(String mPort) {
+        Runtime mRuntime = Runtime.getRuntime();
+        Process mProcess = null;
+        OutputStreamWriter mWrite = null;
+
+        try {
+            mProcess = mRuntime.exec("su");
+            mWrite = new OutputStreamWriter(mProcess.getOutputStream());
+            mWrite.write("setprop service.adb.tcp.port " + mPort + "\n");
+            mWrite.flush();
+            mWrite.write("stop adbd\n");
+            mWrite.flush();
+            mWrite.write("start adbd\n");
+            mWrite.flush();
+            mWrite.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        MenuItem mItem = menu.findItem(R.id.action_adb);
+        mPrefADB = mPreferences.getBoolean("mPrefADB", false);
+        if (mPrefADB) {
+            mItem.setIcon(R.drawable.ic_adb_on);
+        } else {
+            mItem.setIcon(R.drawable.ic_adb_off);
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -105,8 +191,35 @@ public class MainActivity extends ActionBarActivity {
             openAboutDialog();
             return true;
         }
-
+        if (id == R.id.action_adb) {
+            if (getIPAdressWifi().equals("0.0.0.0")) {
+                Toast.makeText(getApplicationContext(), getString(R.string.ip_error), Toast.LENGTH_LONG).show();
+            } else {
+                mPrefADB = mPreferences.getBoolean("mPrefADB", false);
+                if (!mPrefADB) {
+                    showNotification();
+                    mPrefADB = mPreferences.edit().putBoolean("mPrefADB", true).commit();
+                } else {
+                    killNotification();
+                    mPrefADB = mPreferences.edit().putBoolean("mPrefADB", false).commit();
+                }
+            }
+            return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Gets the ip adress wireless.
+     *
+     * @return The ip adress wireless.
+     */
+    private String getIPAdressWifi() {
+        WifiManager mWifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+        WifiInfo mWifiInfo = mWifiManager.getConnectionInfo();
+        int mIP = mWifiInfo.getIpAddress();
+        String mIPAddress = Formatter.formatIpAddress(mIP);
+        return  mIPAddress;
     }
 
 	// Create AlertDialog for the first launch

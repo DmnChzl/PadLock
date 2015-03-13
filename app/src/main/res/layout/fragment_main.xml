@@ -34,31 +34,63 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         fab:fab_addButtonColorNormal="@color/greyEmpty"
         fab:fab_addButtonColorPressed="@color/greyEmpty"
         fab:fab_addButtonPlusIconColor="@color/greyDark"
         fab:fab_labelStyle="@style/Label"
         android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp" >
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/actionLock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/red"
-            fab:fab_title="@string/lock"
-            fab:fab_colorPressed="@color/redDark" />
+		<com.getbase.floatingactionbutton.FloatingActionButton
+			android:id="@+id/actionSystem"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			fab:fab_icon="@drawable/img_system"
+			fab:fab_size="mini"
+			fab:fab_colorNormal="@color/orange"
+			fab:fab_title="@string/reboot_system"
+			fab:fab_colorPressed="@color/orangeDark" />
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/actionUnlock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/green"
-            fab:fab_title="@string/unlock"
-            fab:fab_colorPressed="@color/greenDark" />
+		<com.getbase.floatingactionbutton.FloatingActionButton
+			android:id="@+id/actionRecovery"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			fab:fab_icon="@drawable/img_recovery"
+			fab:fab_size="mini"
+			fab:fab_colorNormal="@color/orange"
+			fab:fab_title="@string/reboot_recovery"
+			fab:fab_colorPressed="@color/orangeDark" />
+
+		<com.getbase.floatingactionbutton.FloatingActionButton
+			android:id="@+id/actionBootLoader"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			fab:fab_icon="@drawable/img_bootloader"
+			fab:fab_size="mini"
+			fab:fab_colorNormal="@color/orange"
+			fab:fab_title="@string/reboot_bootloader"
+			fab:fab_colorPressed="@color/orangeDark" />
+
+		<com.getbase.floatingactionbutton.FloatingActionButton
+			android:id="@+id/actionLock"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			fab:fab_icon="@drawable/img_lock"
+			fab:fab_size="mini"
+			fab:fab_colorNormal="@color/red"
+			fab:fab_title="@string/lock"
+			fab:fab_colorPressed="@color/redDark" />
+
+		<com.getbase.floatingactionbutton.FloatingActionButton
+			android:id="@+id/actionUnlock"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			fab:fab_icon="@drawable/img_unlock"
+			fab:fab_size="mini"
+			fab:fab_colorNormal="@color/green"
+			fab:fab_title="@string/unlock"
+			fab:fab_colorPressed="@color/greenDark" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

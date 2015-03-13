@@ -25,6 +25,8 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
@@ -43,10 +45,7 @@ public class InfoFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-	private ArrayList<String> mTitleSet;
-	private ArrayList<Integer> mColorSet;
-	private ArrayList<String> mInfoSet;
-	private ArrayList<Integer> mLogoSet;
+	private ArrayList<Card> mCardSet;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate
@@ -84,7 +83,7 @@ public class InfoFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // Specify an adapter (see also next example)
-        mAdapter = new CardViewAdapter(mTitleSet, mColorSet, mInfoSet, mLogoSet);
+        mAdapter = new CardViewAdapter(mCardSet);
         mRecyclerView.setAdapter(mAdapter);
 		
         return mView;
@@ -111,58 +110,57 @@ public class InfoFragment extends Fragment {
     }
 	
 	private void prepareArraySet() {
-		
-		mTitleSet = new ArrayList<>();
-		mTitleSet.add(getString(R.string.application));
-		mTitleSet.add(getString(R.string.device));
-		mTitleSet.add(getString(R.string.designation));
-        mTitleSet.add(getString(R.string.storage));
-        mTitleSet.add(getString(R.string.ram));
-		mTitleSet.add(getString(R.string.android));
-		mTitleSet.add(getString(R.string.build));
-        mTitleSet.add(getString(R.string.kernel));
-		mTitleSet.add(getString(R.string.bootloader));
-		mTitleSet.add(getString(R.string.baseband));
-		mTitleSet.add(getString(R.string.serial));
-		
-		mColorSet = new ArrayList<>();
-        mColorSet.add(R.color.amberDark);
-        mColorSet.add(R.color.tealDark);
-        mColorSet.add(R.color.brownDark);
-        mColorSet.add(R.color.pinkDark);
-        mColorSet.add(R.color.indigoDark);
-        mColorSet.add(R.color.lightGreenDark);
-        mColorSet.add(R.color.blueDark);
-		mColorSet.add(R.color.purpleDark);
-        mColorSet.add(R.color.cyanDark);
-        mColorSet.add(R.color.limeDark);
-        mColorSet.add(R.color.blueGreyDark);
 
-		mInfoSet = new ArrayList<>();
-        mInfoSet.add(getApplicationVersion());
-        mInfoSet.add(setCapitalize(android.os.Build.MANUFACTURER)+" "+android.os.Build.MODEL+" ("+setCapitalize(android.os.Build.BRAND)+")");
-        mInfoSet.add(setCapitalize(android.os.Build.DEVICE)+" ("+setCapitalize(android.os.Build.PRODUCT)+")");
-        mInfoSet.add(getAvailableInternalMemorySize()+" ("+getString(R.string.free)+") / " + getTotalInternalMemorySize());
-        mInfoSet.add(getRAMSize());
-        mInfoSet.add(android.os.Build.VERSION.RELEASE);
-        mInfoSet.add(android.os.Build.DISPLAY);
-        mInfoSet.add(System.getProperty("os.version"));
-        mInfoSet.add(android.os.Build.BOOTLOADER.toUpperCase());
-        mInfoSet.add(getRadioVersion());
-        mInfoSet.add(android.os.Build.SERIAL.toUpperCase());
-		
-		mLogoSet = new ArrayList<>();
-        mLogoSet.add(R.drawable.ic_application);
-        mLogoSet.add(R.drawable.ic_device);
-        mLogoSet.add(R.drawable.ic_designation);
-        mLogoSet.add(R.drawable.ic_storage);
-        mLogoSet.add(R.drawable.ic_ram);
-        mLogoSet.add(R.drawable.ic_android);
-        mLogoSet.add(R.drawable.ic_build);
-        mLogoSet.add(R.drawable.ic_kernel);
-        mLogoSet.add(R.drawable.ic_bootloader);
-        mLogoSet.add(R.drawable.ic_baseband);
-        mLogoSet.add(R.drawable.ic_serial);
+        mCardSet = new ArrayList<>();
+
+        Card applicationCard = new Card(getString(R.string.application), R.color.amberDark, R.color.amber,
+                getApplicationVersion(), R.drawable.ic_application);
+
+        Card deviceCard = new Card(getString(R.string.device), R.color.tealDark, R.color.teal,
+                setCapitalize(android.os.Build.MANUFACTURER)+" "+android.os.Build.MODEL+" ("+setCapitalize(android.os.Build.BRAND)+")", R.drawable.ic_device);
+
+        Card ipCard = new Card(getString(R.string.ip_adress), R.color.greyDark, R.color.grey,
+                getIPAdressWifi(), R.drawable.ic_ip);
+
+        Card designationCard = new Card(getString(R.string.designation), R.color.brownDark, R.color.brown,
+                setCapitalize(android.os.Build.DEVICE)+" ("+setCapitalize(android.os.Build.PRODUCT)+")", R.drawable.ic_designation);
+
+        Card storageCard = new Card(getString(R.string.storage), R.color.pinkDark, R.color.pink,
+                getAvailableInternalMemorySize()+" ("+getString(R.string.free)+") / " + getTotalInternalMemorySize(), R.drawable.ic_storage);
+
+        Card ramCard = new Card(getString(R.string.ram), R.color.indigoDark, R.color.indigo,
+                getRAMSize(), R.drawable.ic_ram);
+
+        Card androidCard = new Card(getString(R.string.android), R.color.lightGreenDark, R.color.lightGreen,
+                android.os.Build.VERSION.RELEASE, R.drawable.ic_android);
+
+        Card buildCard = new Card(getString(R.string.build), R.color.blueDark, R.color.blue,
+                android.os.Build.DISPLAY, R.drawable.ic_build);
+
+        Card kernelCard = new Card(getString(R.string.kernel), R.color.purpleDark, R.color.purple,
+                System.getProperty("os.version"), R.drawable.ic_kernel);
+
+        Card bootloaderCard = new Card(getString(R.string.bootloader), R.color.cyanDark, R.color.cyan,
+                android.os.Build.BOOTLOADER.toUpperCase(), R.drawable.ic_bootloader);
+
+        Card basebandCard = new Card(getString(R.string.baseband), R.color.limeDark, R.color.lime,
+                getRadioVersion(), R.drawable.ic_baseband);
+
+        Card serialCard = new Card(getString(R.string.serial), R.color.blueGreyDark, R.color.blueGrey,
+                android.os.Build.SERIAL.toUpperCase(), R.drawable.ic_serial);
+
+        mCardSet.add(applicationCard);
+        mCardSet.add(deviceCard);
+        mCardSet.add(ipCard);
+        mCardSet.add(designationCard);
+        mCardSet.add(storageCard);
+        mCardSet.add(ramCard);
+        mCardSet.add(androidCard);
+        mCardSet.add(buildCard);
+        mCardSet.add(kernelCard);
+        mCardSet.add(bootloaderCard);
+        mCardSet.add(basebandCard);
+        mCardSet.add(serialCard);
 	}
 
     /**
@@ -179,6 +177,19 @@ public class InfoFragment extends Fragment {
             radioVersion = android.os.Build.RADIO;
         }
         return radioVersion;
+    }
+
+    /**
+     * Gets the ip adress wireless.
+     *
+     * @return The ip adress wireless.
+     */
+    private String getIPAdressWifi() {
+        WifiManager mWifiManager = (WifiManager) getActivity().getSystemService(getActivity().WIFI_SERVICE);
+        WifiInfo mWifiInfo = mWifiManager.getConnectionInfo();
+        int mIP = mWifiInfo.getIpAddress();
+        String mIPAddress = Formatter.formatIpAddress(mIP);
+        return  mIPAddress;
     }
 	
 	/**
@@ -213,12 +224,9 @@ public class InfoFragment extends Fragment {
     }
 
     private void removeBaseband() {
-        int mValue = mInfoSet.indexOf(getString(R.string.unknown));
+        int mValue = mCardSet.indexOf(getString(R.string.unknown));
         if (getRadioVersion().equals(getString(R.string.unknown))) {
-            mTitleSet.remove(mValue);
-            mColorSet.remove(mValue);
-            mInfoSet.remove(mValue);
-            mLogoSet.remove(mValue);
+            mCardSet.remove(mValue);
         }
     }
 	

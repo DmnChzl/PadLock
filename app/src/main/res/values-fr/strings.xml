@@ -20,23 +20,32 @@
 <resources>
 
     <string name="about">À propos</string>
+    <string name="adb">ADB Wi-Fi</string>
 	<string name="baseband">Radio</string>
 	<string name="developer">PadLock pour les appareils Android Nexus est développé à base de caféine en utilisant des logiciels open source.</string>
 	<string name="device">Appareil</string>
     <string name="error">PAS D\'ACCÈS ROOT !</string>
     <string name="free">Libre</string>
+    <string name="ip_adress">Adresse IP</string>
+    <string name="ip_error">Veuillez vous connecter à un réseau Wifi</string>
     <string name="kernel">Noyau</string>
-    <string name="loading">En attente du Root...</string>
+    <string name="loading">En attente du Root&#8230;</string>
     <string name="lock">Verouiller</string>
     <string name="locked">Verouillé</string>
     <string name="message">PadLock pour Android permet de déverouiller le BootLoader de votre appareil Android Nexus <b>sans</b> perdre vos données personnels. \n\nCette application nécessite que votre appareil soit <b>Rooter</b> ! \n\nEnjoy ;)</string>
+    <string name="notification">Débogage sans fil activé</string>
+    <string name="port">Connectez vous sur le port 5555</string>
     <string name="reboot">Redémarrer le BootLoader ?</string>
+	<string name="reboot_bootloader">Redémarrer le BootLoader</string>
+	<string name="reboot_recovery">Redémarrer le Recovery</string>
+	<string name="reboot_system">Redémarrer le Système</string>
     <string name="state">État</string>
     <string name="storage">Stockage</string>
     <string name="title">Bonjour !</string>
     <string name="unknown">Inconnu</string>
     <string name="unlock">Déverouiller</string>
     <string name="unlocked">Déverouillé</string>
+	<string name="unsupported">Appareil non supporté</string>
     <string name="yes">Oui</string>
 
 </resources>
