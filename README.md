@@ -6,7 +6,7 @@ This includes features like :
 - Unlock the BootLoader
 - Access to information
 - Reboot on BootLoader
-- Reboot menu advanced
+- Advanced reboot menu
 - ADB wireless
 
 #Permission
