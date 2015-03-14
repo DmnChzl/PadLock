@@ -224,9 +224,9 @@ public class InfoFragment extends Fragment {
     }
 
     private void removeBaseband() {
-        int mValue = mCardSet.indexOf(getString(R.string.unknown));
+
         if (getRadioVersion().equals(getString(R.string.unknown))) {
-            mCardSet.remove(mValue);
+            mCardSet.remove(10);
         }
     }
 	
