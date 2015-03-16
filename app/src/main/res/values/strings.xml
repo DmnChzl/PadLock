@@ -23,11 +23,14 @@
     <string name="about">About</string>
     <string name="action" translatable="false">Action</string>
     <string name="adb">ADB Wireless</string>
-	<string name="android" translatable="false">Android</string>
+    <string name="adb_on">Wireless debugging enabled</string>
+    <string name="adb_off">Wireless debugging disabled</string>
+    <string name="android" translatable="false">Android</string>
     <string name="application" translatable="false">Application</string>
     <string name="baseband">Baseband</string>
     <string name="bootloader" translatable="false">BootLoader</string>
     <string name="build" translatable="false">Build</string>
+    <string name="connect">Connect to</string>
     <string name="copyright" translatable="false">Copyright &#169; 2015 Damien Chazoule</string>
     <string name="designation" translatable="false">Designation</string>
 	<string name="developer">PadLock for Android devices is built with caffeine using open source software.</string>
@@ -42,9 +45,7 @@
     <string name="lock">Lock</string>
     <string name="locked">Locked</string>
     <string name="message">PadLock for Android allows you to unlock the BootLoader of your Android device without wipe your personal data. \n\nThis application has an advanced reboot menu and possibility to enable wireless ADB. \n\nThis application requires that your device is <b>Rooted</b> ! \n\nEnjoy ;)</string>
-    <string name="notification">Wireless debugging enabled</string>
     <string name="okay" translatable="false">OK</string>
-    <string name="port">Log on port 5555</string>
     <string name="ram" translatable="false">RAM</string>
     <string name="reboot">Reboot BootLoader ?</string>
 	<string name="reboot_bootloader">Reboot BootLoader</string>

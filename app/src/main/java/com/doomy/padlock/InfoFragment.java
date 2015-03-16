@@ -120,7 +120,7 @@ public class InfoFragment extends Fragment {
                 setCapitalize(android.os.Build.MANUFACTURER)+" "+android.os.Build.MODEL+" ("+setCapitalize(android.os.Build.BRAND)+")", R.drawable.ic_device);
 
         Card ipCard = new Card(getString(R.string.ip_adress), R.color.greyDark, R.color.grey,
-                getIPAdressWifi(), R.drawable.ic_ip);
+                MainActivity.getIPAdressWifi(), R.drawable.ic_ip);
 
         Card designationCard = new Card(getString(R.string.designation), R.color.brownDark, R.color.brown,
                 setCapitalize(android.os.Build.DEVICE)+" ("+setCapitalize(android.os.Build.PRODUCT)+")", R.drawable.ic_designation);
@@ -177,19 +177,6 @@ public class InfoFragment extends Fragment {
             radioVersion = android.os.Build.RADIO;
         }
         return radioVersion;
-    }
-
-    /**
-     * Gets the ip adress wireless.
-     *
-     * @return The ip adress wireless.
-     */
-    private String getIPAdressWifi() {
-        WifiManager mWifiManager = (WifiManager) getActivity().getSystemService(getActivity().WIFI_SERVICE);
-        WifiInfo mWifiInfo = mWifiManager.getConnectionInfo();
-        int mIP = mWifiInfo.getIpAddress();
-        String mIPAddress = Formatter.formatIpAddress(mIP);
-        return  mIPAddress;
     }
 	
 	/**

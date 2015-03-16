@@ -55,6 +55,7 @@ public class MainActivity extends ActionBarActivity {
     private SlidingTabLayout mSlidingTabLayout;
 	private int NumbOftabs = 2;
     private boolean mValue;
+    private static MainActivity mActivity;
     private static Boolean mPrefADB;
     private static SharedPreferences mPreferences;
 
@@ -62,6 +63,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mActivity = this;
 
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -111,8 +114,8 @@ public class MainActivity extends ActionBarActivity {
         PendingIntent mPendingIntent = PendingIntent.getActivity(this, 0, mIntent, 0);
 
         Notification mNotification = new Notification.Builder(this)
-                .setContentTitle(getString(R.string.notification))
-                .setContentText(getString(R.string.port))
+                .setContentTitle(getString(R.string.adb_on))
+                .setContentText(getString(R.string.connect)+" "+getIPAdressWifi()+":5555")
                 .setSmallIcon(R.drawable.img_adb)
                 .setContentIntent(mPendingIntent)
                 .setAutoCancel(false)
@@ -197,9 +200,11 @@ public class MainActivity extends ActionBarActivity {
             } else {
                 mPrefADB = mPreferences.getBoolean("mPrefADB", false);
                 if (!mPrefADB) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.adb_on), Toast.LENGTH_SHORT).show();
                     showNotification();
                     mPrefADB = mPreferences.edit().putBoolean("mPrefADB", true).commit();
                 } else {
+                    Toast.makeText(getApplicationContext(), getString(R.string.adb_off), Toast.LENGTH_SHORT).show();
                     killNotification();
                     mPrefADB = mPreferences.edit().putBoolean("mPrefADB", false).commit();
                 }
@@ -214,8 +219,8 @@ public class MainActivity extends ActionBarActivity {
      *
      * @return The ip adress wireless.
      */
-    private String getIPAdressWifi() {
-        WifiManager mWifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+    public static String getIPAdressWifi() {
+        WifiManager mWifiManager = (WifiManager) mActivity.getSystemService(WIFI_SERVICE);
         WifiInfo mWifiInfo = mWifiManager.getConnectionInfo();
         int mIP = mWifiInfo.getIpAddress();
         String mIPAddress = Formatter.formatIpAddress(mIP);
