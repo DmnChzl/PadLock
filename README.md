@@ -16,12 +16,12 @@ This includes features like :
 
 #Dependencies
 
-- com.android.support:appcompat-v7:21.0.3
-- com.android.support:cardview-v7:21.0.3
-- com.android.support:recyclerview-v7:21.0.3
-- com.android.support:support-v4:21.0.3
-- com.getbase:floatingactionbutton:1.6.0
-- com.nispok:snackbar:2.7.5
+- com.android.support:appcompat-v7:22.0.0
+- com.android.support:cardview-v7:22.0.0
+- com.android.support:recyclerview-v7:22.0.0
+- com.android.support:support-v4:22.0.0
+- com.getbase:floatingactionbutton:1.9.0
+- com.nispok:snackbar:2.10.6
 
 #QR Code
 
