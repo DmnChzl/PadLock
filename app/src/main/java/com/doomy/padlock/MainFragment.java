@@ -312,7 +312,7 @@ public class MainFragment extends Fragment {
                 Snackbar.with(getActivity())
                         .text(getString(R.string.reboot))
                         .textColor(getResources().getColor(R.color.material))
-                        .color(getResources().getColor(R.color.greyEmpty))
+                        .color(getResources().getColor(R.color.materialLight))
                         .eventListener(new EventListener() {
                             @Override
                             public void onShow(Snackbar snackbar) {
@@ -321,15 +321,17 @@ public class MainFragment extends Fragment {
                                 } else if (android.os.Build.DEVICE.equals("hammerhead")) {
                                     mMultipleActions.animate().translationY(-snackbar.getHeight()); // Nexus 5
                                 } else if (android.os.Build.DEVICE.equals("bacon")||android.os.Build.DEVICE.equals("A0001")) {
-									mMultipleActions.animate().translationY(-snackbar.getHeight()); // OnePlus One
-								}
+                                    mMultipleActions.animate().translationY(-snackbar.getHeight()); // OnePlus One
+                                }
                             }
+                            @Override
+                            public void onShowByReplace(Snackbar snackbar) {
 
+                            }
                             @Override
                             public void onShown(Snackbar snackbar) {
 
                             }
-
                             @Override
                             public void onDismiss(Snackbar snackbar) {
                                 if (android.os.Build.DEVICE.equals("mako")) {
@@ -337,10 +339,13 @@ public class MainFragment extends Fragment {
                                 } else if (android.os.Build.DEVICE.equals("hammerhead")) {
                                     mMultipleActions.animate().translationY(0); // Nexus 5
                                 } else if (android.os.Build.DEVICE.equals("bacon")||android.os.Build.DEVICE.equals("A0001")) {
-									mMultipleActions.animate().translationY(0); // OnePlus One
-								}
+                                    mMultipleActions.animate().translationY(0); // OnePlus One
+                                }
                             }
+                            @Override
+                            public void onDismissByReplace(Snackbar snackbar) {
 
+                            }
                             @Override
                             public void onDismissed(Snackbar snackbar) {
 

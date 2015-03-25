@@ -28,8 +28,9 @@
         <item name="windowActionBar">false</item>
     </style>
 
-    <style name="DialogTheme" parent="Base.Theme.AppCompat.Light">
-        <item name="android:textColor">@color/orangeDark</item>
+    <style name="DialogTheme" parent="android:Theme.Material.Light.Dialog.Alert">
+        <item name="android:textColor">@color/orange</item>
+        <item name="android:colorAccent">@color/orange</item>
     </style>
 	
 	<style name="Label">

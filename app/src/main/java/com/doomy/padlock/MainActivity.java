@@ -232,11 +232,12 @@ public class MainActivity extends ActionBarActivity {
         mValue = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("mValue", true);
 
         if (mValue){
-            AlertDialog mAlertDialog = new AlertDialog.Builder(MainActivity.this).create();
+            // ContextThemeWrapper mThemeWrapper = new ContextThemeWrapper(MainActivity.this, R.style.DialogTheme);
+            AlertDialog.Builder mAlertDialog = new AlertDialog.Builder(MainActivity.this, R.style.DialogTheme);
 
             mAlertDialog.setTitle(getString(R.string.title));
             mAlertDialog.setMessage(getString(R.string.message));
-            mAlertDialog.setButton(getString(R.string.okay), new DialogInterface.OnClickListener() {
+            mAlertDialog.setPositiveButton(getString(R.string.okay), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
@@ -252,7 +253,7 @@ public class MainActivity extends ActionBarActivity {
     private void openAboutDialog() {
         LayoutInflater mLayoutInflater = LayoutInflater.from(this);
         View mView = mLayoutInflater.inflate(R.layout.view_about, null);
-		
+
         ImageView mImageViewDev = (ImageView) mView.findViewById(R.id.dev);
         ImageView mImageViewGitHub = (ImageView) mView.findViewById(R.id.github);
 		Drawable mDev = mImageViewDev.getDrawable();
@@ -271,12 +272,12 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        ContextThemeWrapper mContextThemeWrapper = new ContextThemeWrapper(MainActivity.this, R.style.DialogTheme); // Material Light Theme
-        AlertDialog mAlertDialog = new AlertDialog.Builder(mContextThemeWrapper).create();
+        // ContextThemeWrapper mThemeWrapper = new ContextThemeWrapper(MainActivity.this, R.style.DialogTheme);
+        AlertDialog.Builder mAlertDialog = new AlertDialog.Builder(MainActivity.this, R.style.DialogTheme);
 
         mAlertDialog.setTitle(getString(R.string.about));
         mAlertDialog.setView(mView);
-        mAlertDialog.setButton(getString(R.string.okay), new DialogInterface.OnClickListener() {
+        mAlertDialog.setPositiveButton(getString(R.string.okay), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
