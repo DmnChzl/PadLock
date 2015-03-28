@@ -5,7 +5,7 @@ This is an application that allows you to unlock the BootLoader.
 This includes features like :
 - Unlock the BootLoader
 - Access to information
-- Reboot on BootLoader
+- Reboot on the BootLoader
 - Advanced reboot menu
 - ADB wireless
 
