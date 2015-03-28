@@ -35,7 +35,7 @@
 	
 	<style name="Label">
         <item name="android:background">@drawable/label</item>
-        <item name="android:textColor">@color/material</item>
+        <item name="android:textColor">@color/greyMaterialDark</item>
     </style>
 
 </resources>

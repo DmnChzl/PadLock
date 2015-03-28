@@ -311,8 +311,8 @@ public class MainFragment extends Fragment {
         SnackbarManager.show(
                 Snackbar.with(getActivity())
                         .text(getString(R.string.reboot))
-                        .textColor(getResources().getColor(R.color.material))
-                        .color(getResources().getColor(R.color.materialLight))
+                        .textColor(getResources().getColor(R.color.greyMaterialDark))
+                        .color(getResources().getColor(R.color.greyMaterialLight))
                         .eventListener(new EventListener() {
                             @Override
                             public void onShow(Snackbar snackbar) {

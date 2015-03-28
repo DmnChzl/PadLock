@@ -35,7 +35,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.Formatter;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -232,7 +231,6 @@ public class MainActivity extends ActionBarActivity {
         mValue = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("mValue", true);
 
         if (mValue){
-            // ContextThemeWrapper mThemeWrapper = new ContextThemeWrapper(MainActivity.this, R.style.DialogTheme);
             AlertDialog.Builder mAlertDialog = new AlertDialog.Builder(MainActivity.this, R.style.DialogTheme);
 
             mAlertDialog.setTitle(getString(R.string.title));
@@ -272,7 +270,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        // ContextThemeWrapper mThemeWrapper = new ContextThemeWrapper(MainActivity.this, R.style.DialogTheme);
         AlertDialog.Builder mAlertDialog = new AlertDialog.Builder(MainActivity.this, R.style.DialogTheme);
 
         mAlertDialog.setTitle(getString(R.string.about));
