@@ -31,6 +31,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -66,6 +67,8 @@ public class MainActivity extends ActionBarActivity {
         mActivity = this;
 
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        checkNetwork();
 
         // Open "Hello" dialog at the first launch
         openFirstDialog();
@@ -112,20 +115,20 @@ public class MainActivity extends ActionBarActivity {
         Intent mIntent = new Intent(this, MainActivity.class);
         PendingIntent mPendingIntent = PendingIntent.getActivity(this, 0, mIntent, 0);
 
-        Notification mNotification = new Notification.Builder(this)
-                .setContentTitle(getString(R.string.adb_on))
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        mBuilder.setContentTitle(getString(R.string.adb_on))
                 .setContentText(getString(R.string.connect)+" "+getIPAdressWifi()+":5555")
                 .setSmallIcon(R.drawable.img_adb)
+                .setColor(getResources().getColor(R.color.blueGrey))
                 .setContentIntent(mPendingIntent)
                 .setAutoCancel(false)
                 .setOngoing(true)
-                .setPriority(Notification.PRIORITY_HIGH)
-                .build();
+                .setPriority(Notification.PRIORITY_HIGH);
 
         NotificationManager mNotificationManager = (NotificationManager)
                 getSystemService(NOTIFICATION_SERVICE);
 
-        mNotificationManager.notify(0, mNotification);
+        mNotificationManager.notify(0, mBuilder.build());
     }
 
     private void killNotification() {
@@ -156,6 +159,14 @@ public class MainActivity extends ActionBarActivity {
             mWrite.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void checkNetwork() {
+        mPrefADB = mPreferences.getBoolean("mPrefADB", false);
+        if(mPrefADB&&getIPAdressWifi().equals("0.0.0.0")) {
+            killNotification();
+            mPrefADB = mPreferences.edit().putBoolean("mPrefADB", false).commit();
         }
     }
 

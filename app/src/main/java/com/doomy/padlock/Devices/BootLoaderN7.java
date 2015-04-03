@@ -15,18 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.doomy.padlock;
-
-import java.io.IOException;
+package com.doomy.padlock.Devices;
 
 import android.util.Log;
 
-public class BootLoaderN10 extends BootLoader {
+import java.io.IOException;
+
+public class BootLoaderN7 extends BootLoader {
 
 	// Declaring your view and variables
-    private static final String TAG = "BootLoaderN10";
-    private static final String mQueryCommand = "dd ibs=1 count=1 skip=548 if=/dev/block/platform/dw_mmc.0/by-name/param # query ";
-    private static final String mWriteCommand = "dd obs=1 count=1 seek=548 of=/dev/block/platform/dw_mmc.0/by-name/param # write ";
+    private static final String TAG = "BootLoaderN7";
+    private static final String mQueryCommand = "dd ibs=1 count=1 skip=5241856 if=/dev/block/platform/msm_sdcc.1/by-name/aboot # query ";
+    private static final String mWriteCommand = "dd obs=1 count=1 seek=5241856 of=/dev/block/platform/msm_sdcc.1/by-name/aboot # write ";
 
 	/**
      * Sets the lock state of bootloader.
@@ -34,13 +34,13 @@ public class BootLoaderN10 extends BootLoader {
      * @return The superuser's command.
      */
     @Override
-    public void setLockState(boolean newState) throws IOException {
+    public void setLockState(boolean myNewState) throws IOException {
         int mOutByte;
-        if (newState) {
+        if (myNewState) {
             mOutByte = 0;
             Log.i(TAG, "Locking BootLoader by sending " + mOutByte + " to " + mWriteCommand);
         } else {
-            mOutByte = 1;
+            mOutByte = 2;
             Log.i(TAG, "Unlocking BootLoader by sending " + mOutByte + " to " + mWriteCommand);
         }
         superUserCommandWithDataByte(mWriteCommand, mOutByte);
@@ -60,7 +60,7 @@ public class BootLoaderN10 extends BootLoader {
 
             if (mLockResult == 0) {
                 return BL_LOCKED;
-            } else if (mLockResult == 1) {
+            } else if (mLockResult == 2) {
                 return BL_UNLOCKED;
             } else {
                 return BL_UNKNOWN;

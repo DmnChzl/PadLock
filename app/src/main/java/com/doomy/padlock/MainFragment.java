@@ -17,10 +17,6 @@
 
 package com.doomy.padlock;
 
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -33,6 +29,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.doomy.padlock.Devices.BootLoader;
+
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
@@ -40,6 +38,10 @@ import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.SnackbarManager;
 import com.nispok.snackbar.listeners.ActionClickListener;
 import com.nispok.snackbar.listeners.EventListener;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 
 public class MainFragment extends Fragment {
 
@@ -228,41 +230,41 @@ public class MainFragment extends Fragment {
     public void onStart() {
         super.onStart();
         Log.v(TAG, "Handling onStart");
-        Boolean setState = false;
-        Boolean desiredState = false;
+        Boolean mSetState = false;
+        Boolean mNewState = false;
         mBootLoader = BootLoader.makeBootLoader();
 
-        new AsyncBootLoader().execute(setState, desiredState);
+        new AsyncBootLoader().execute(mSetState, mNewState);
     }
 
     public void doUnlockBootloader() {
-        Boolean setState = true;
-        Boolean desiredState = false;
-        new AsyncBootLoader().execute(setState, desiredState);
+        Boolean mSetState = true;
+        Boolean mNewState = false;
+        new AsyncBootLoader().execute(mSetState, mNewState);
     }
 
     public void doLockBootloader() {
-        Boolean setState = true;
-        Boolean desiredState = true;
-        new AsyncBootLoader().execute(setState, desiredState);
+        Boolean mSetState = true;
+        Boolean mNewState = true;
+        new AsyncBootLoader().execute(mSetState, mNewState);
     }
 
     private class AsyncBootLoader extends AsyncTask<Boolean, Void, Integer> {
 
         @Override
-        protected Integer doInBackground(Boolean... booleans) {
-            Boolean setState = booleans[0];
-            Boolean desiredState = booleans[1];
+        protected Integer doInBackground(Boolean... myBooleans) {
+            Boolean mSetState = myBooleans[0];
+            Boolean mNewState = myBooleans[1];
 
             if (mBootLoader == null) {
                 return Integer.valueOf(BootLoader.BL_UNSUPPORTED_DEVICE);
             }
 
-            if (setState) {
+            if (mSetState) {
                 try {
-                    mBootLoader.setLockState(desiredState);
+                    mBootLoader.setLockState(mNewState);
                 } catch (IOException e) {
-                    if (desiredState) {
+                    if (mNewState) {
                         Log.e(TAG, "Caught IOException Locking : " + e);
                     } else {
                         Log.e(TAG, "Caught IOException Unlocking : " + e);
@@ -279,8 +281,8 @@ public class MainFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(Integer resultObj) {
-            int mResult = resultObj.intValue();
+        protected void onPostExecute(Integer myResultObject) {
+            int mResult = myResultObject.intValue();
 
             mMultipleActions = (FloatingActionsMenu) getView().findViewById(R.id.multipleActions);
             mActionLock = (FloatingActionButton) getView().findViewById(R.id.actionLock);

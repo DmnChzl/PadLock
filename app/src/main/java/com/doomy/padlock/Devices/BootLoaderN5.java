@@ -15,18 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.doomy.padlock;
-
-import java.io.IOException;
+package com.doomy.padlock.Devices;
 
 import android.util.Log;
 
-public class BootLoaderOnePlusOne extends BootLoader {
+import java.io.IOException;
+
+public class BootLoaderN5 extends BootLoader {
 
 	// Declaring your view and variables
-    private static final String TAG = "BootLoaderOnePlusOne";
-	private static final String mQueryCommand = "dd ibs=1 count=1 skip=1048080 if=/dev/block/platform/msm_sdcc.1/by-name/aboot # query ";
-    private static final String mWriteCommand = "dd obs=1 count=1 seek=1048080 of=/dev/block/platform/msm_sdcc.1/by-name/aboot # write ";
+    private static final String TAG = "BootLoaderN5";
+    private static final String mQueryCommand = "dd ibs=1 count=1 skip=16400 if=/dev/block/platform/msm_sdcc.1/by-name/misc # query ";
+    private static final String mWriteCommand = "dd obs=1 count=1 seek=16400 of=/dev/block/platform/msm_sdcc.1/by-name/misc # write ";
 
 	/**
      * Sets the lock state of bootloader.
@@ -34,9 +34,9 @@ public class BootLoaderOnePlusOne extends BootLoader {
      * @return The superuser's command.
      */
     @Override
-    public void setLockState(boolean newState) throws IOException {
+    public void setLockState(boolean myNewState) throws IOException {
         int mOutByte;
-        if (newState) {
+        if (myNewState) {
             mOutByte = 0;
             Log.i(TAG, "Locking BootLoader by sending " + mOutByte + " to " + mWriteCommand);
         } else {

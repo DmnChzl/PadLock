@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.doomy.padlock;
+package com.doomy.padlock.Devices;
+
+import android.util.Log;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
-import android.util.Log;
 
 public class BootLoader {
 
