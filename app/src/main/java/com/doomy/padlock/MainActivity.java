@@ -263,12 +263,15 @@ public class MainActivity extends ActionBarActivity {
         LayoutInflater mLayoutInflater = LayoutInflater.from(this);
         View mView = mLayoutInflater.inflate(R.layout.view_about, null);
 
-        ImageView mImageViewDev = (ImageView) mView.findViewById(R.id.dev);
-        ImageView mImageViewGitHub = (ImageView) mView.findViewById(R.id.github);
-		Drawable mDev = mImageViewDev.getDrawable();
-		Drawable mGitHub = mImageViewGitHub.getDrawable();
-		mDev.setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
-		mGitHub.setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
+        ImageView mImageViewMrDoomy = (ImageView) mView.findViewById(R.id.imageViewMrDoomy);
+        ImageView mImageViewStudio = (ImageView) mView.findViewById(R.id.imageViewStudio);
+        ImageView mImageViewGitHub = (ImageView) mView.findViewById(R.id.imageViewGitHub);
+        Drawable mMrDoomy = mImageViewMrDoomy.getDrawable();
+        Drawable mStudio = mImageViewStudio.getDrawable();
+        Drawable mGitHub = mImageViewGitHub.getDrawable();
+        mMrDoomy.setColorFilter(getResources().getColor(R.color.orangeDark), PorterDuff.Mode.SRC_ATOP);
+        mStudio.setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
+        mGitHub.setColorFilter(getResources().getColor(R.color.greyMaterialDark), PorterDuff.Mode.SRC_ATOP);
 
         mImageViewGitHub.setOnClickListener(new View.OnClickListener() {
             @Override
