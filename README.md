@@ -9,12 +9,12 @@ This includes features like :
 - Advanced reboot menu
 - ADB wireless
 
-#Permission
+# Permissions
 
 - android.permission.ACCESS_SUPERUSER
 - android.permission.ACCESS_WIFI_STATE
 
-#Dependencies
+# Dependencies
 
 - com.android.support:appcompat-v7:22.0.0
 - com.android.support:cardview-v7:22.0.0
@@ -23,20 +23,20 @@ This includes features like :
 - com.getbase:floatingactionbutton:1.9.0
 - com.nispok:snackbar:2.10.6
 
-#QR Code
+# QR Code
 
 <a href="https://play.google.com/store/apps/details?id=com.doomy.padlock">
   <img alt="QR Code"
        src="https://raw.githubusercontent.com/MrDoomy/PadLock/master/dev/images/qrcode.png" />
 </a>
 
-#Screenshots
+# Screenshots
 
 ![Image](https://raw.githubusercontent.com/MrDoomy/PadLock/master/dev/screenshots/hammerhead_1_small.png)
 ![Image](https://raw.githubusercontent.com/MrDoomy/PadLock/master/dev/screenshots/hammerhead_2_small.png)
 ![Image](https://raw.githubusercontent.com/MrDoomy/PadLock/master/dev/screenshots/flo_1_small.png)
 
-#License
+# License
 
     Copyright (C) 2015 Damien Chazoule
 
