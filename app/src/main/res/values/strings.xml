@@ -59,7 +59,7 @@
     <string name="unlock">Unlock</string>
     <string name="unlocked">Unlocked</string>
 	<string name="unsupported">Unsupported device</string>
-    <string name="url" translatable="false">https://github.com/MrDoomy/PadLock</string>
+    <string name="url" translatable="false">https://github.com/DmnChzl/PadLock</string>
     <string name="yes">Yes</string>
 
 </resources>

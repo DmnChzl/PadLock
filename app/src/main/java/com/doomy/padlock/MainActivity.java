@@ -263,13 +263,13 @@ public class MainActivity extends ActionBarActivity {
         LayoutInflater mLayoutInflater = LayoutInflater.from(this);
         View mView = mLayoutInflater.inflate(R.layout.view_about, null);
 
-        ImageView mImageViewMrDoomy = (ImageView) mView.findViewById(R.id.imageViewMrDoomy);
+        ImageView mImageViewAuthor = (ImageView) mView.findViewById(R.id.imageViewAuthor);
         ImageView mImageViewStudio = (ImageView) mView.findViewById(R.id.imageViewStudio);
         ImageView mImageViewGitHub = (ImageView) mView.findViewById(R.id.imageViewGitHub);
-        Drawable mMrDoomy = mImageViewMrDoomy.getDrawable();
+        Drawable mAuthor = mImageViewAuthor.getDrawable();
         Drawable mStudio = mImageViewStudio.getDrawable();
         Drawable mGitHub = mImageViewGitHub.getDrawable();
-        mMrDoomy.setColorFilter(getResources().getColor(R.color.orangeDark), PorterDuff.Mode.SRC_ATOP);
+        mAuthor.setColorFilter(getResources().getColor(R.color.orangeDark), PorterDuff.Mode.SRC_ATOP);
         mStudio.setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
         mGitHub.setColorFilter(getResources().getColor(R.color.greyMaterialDark), PorterDuff.Mode.SRC_ATOP);
 
